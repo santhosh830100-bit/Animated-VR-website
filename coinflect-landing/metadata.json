@@ -1,0 +1,6 @@
+{
+  "name": "Coinflect Landing",
+  "description": "A landing page layout replicating the Coinflect banner with a solid black background, DM Sans typography, and reserved center space.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}

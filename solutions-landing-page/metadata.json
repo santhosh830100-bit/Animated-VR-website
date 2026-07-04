@@ -1,0 +1,6 @@
+{
+  "name": "Solutions Landing Page",
+  "description": "A pristine, single-screen web landing page reproducing the provided agency design exactly with a plane black background and DM Sans typography.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}

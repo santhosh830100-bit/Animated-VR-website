@@ -1,0 +1,8 @@
+{
+  "name": "Pricing",
+  "description": "Choose from our high-end immersive headset plans.",
+  "requestFramePermissions": [],
+  "majorCapabilities": [
+    "MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"
+  ]
+}

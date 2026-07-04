@@ -1,0 +1,6 @@
+{
+  "name": "Zenrixa Hero",
+  "description": "A minimalist plain-black hero section for Zenrixa creative agency featuring modern typography, layout, and clean UI components.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}

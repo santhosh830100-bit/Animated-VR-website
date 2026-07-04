@@ -1,0 +1,1252 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Scroll Animation Sequence</title>
+  <meta name="description" content="A smooth, high-performance scroll-driven image sequence animation.">
+  <link rel="stylesheet" href="style.css">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Space+Grotesk:wght@500;600;700&display=swap" rel="stylesheet">
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          fontFamily: {
+            sans: ['Inter', 'sans-serif'],
+            display: ['Space Grotesk', 'sans-serif'],
+          }
+        }
+      }
+    }
+  </script>
+</head>
+<body>
+
+  <!-- Zenrixa Navbar -->
+  <header class="fixed top-0 left-0 w-full py-4 px-6 md:px-12 lg:px-20 flex items-center justify-between border-b border-white/10 bg-white/[0.05] backdrop-blur-lg z-50">
+    <!-- Brand Logo -->
+    <div class="flex items-center space-x-3 cursor-pointer group">
+      <div class="relative w-8 h-8 flex items-center justify-center">
+        <div class="absolute inset-0 bg-white rotate-45 transition-transform duration-300 group-hover:rotate-90"></div>
+        <div class="absolute w-3 h-3 bg-black rotate-45"></div>
+      </div>
+      <span class="text-xl font-bold text-white tracking-wide font-sans">Zenrixa</span>
+    </div>
+
+    <!-- Navigation Desktop -->
+    <nav class="hidden md:flex items-center space-x-8 absolute left-1/2 -translate-x-1/2">
+      <a href="#section-1" class="nav-link relative py-2 text-[14px] font-medium text-white hover:text-white/80 transition-colors duration-200">
+        Home
+        <div id="nav-active-dot" class="absolute -bottom-1 left-1/2 -translate-x-1/2 w-1 h-1 bg-white rounded-full"></div>
+      </a>
+      <a href="#section-2" class="nav-link relative py-2 text-[14px] font-medium text-white/70 hover:text-white transition-colors duration-200">
+        Product
+      </a>
+      <a href="#section-3" class="nav-link relative py-2 text-[14px] font-medium text-white/70 hover:text-white transition-colors duration-200">
+        About
+      </a>
+    </nav>
+  </header>
+
+
+  <!-- Premium Loader Overlay -->
+  <div class="loader-overlay" id="loader">
+    <div class="loader-spinner"></div>
+    <div class="loader-text">Loading Assets</div>
+    <div class="loader-progress" id="progress">0%</div>
+  </div>
+
+  <!-- Scroll Container 1 -->
+  <div id="section-1" class="scroll-container seq-1">
+    <!-- Canvas container keeps the canvas centered and viewport-fixed -->
+    <div class="canvas-container" style="z-index: 0;">
+      <canvas id="animation-canvas-1"></canvas>
+    </div>
+      
+    <!-- Scrolling Content Overlay -->
+    <div class="relative z-10 w-full -mt-[100vh]">
+      
+      <!-- Hero Layout Overlay -->
+      <div class="min-h-screen w-full max-w-7xl mx-auto px-6 md:px-12 lg:px-20 py-16 md:py-28 flex flex-col justify-center pointer-events-none">
+        <div class="grid grid-cols-1 lg:grid-cols-12 gap-16 lg:gap-12 items-center h-full pointer-events-auto">
+          
+          <!-- Left Hero Content Section -->
+          <div class="lg:col-span-7 space-y-8 md:space-y-12 text-left">
+            
+            <!-- Agency Tag -->
+            <div class="inline-flex items-center space-x-3 text-white text-xs font-bold tracking-[0.3em] uppercase opacity-0 animate-fade-in-down" style="animation-delay: 0.1s; animation-fill-mode: forwards;">
+              <span class="w-1.5 h-1.5 bg-white rounded-full animate-pulse"></span>
+              <span>Creative Agency // Series 2026</span>
+            </div>
+
+            <!-- Display Headline -->
+            <div class="space-y-2">
+              <h1 class="text-5xl sm:text-7xl md:text-8xl font-light text-white tracking-tight leading-[1.05] max-w-[850px] opacity-0 animate-fade-in-up" style="animation-delay: 0.3s; animation-fill-mode: forwards;">
+                The Future Is <br />
+                Closer Than <br />
+                You Think.
+              </h1>
+            </div>
+
+            <!-- Customer Rating Component -->
+            <div class="flex items-center space-x-3 pt-2 opacity-0 animate-fade-in" style="animation-delay: 0.5s; animation-fill-mode: forwards;">
+              <div class="flex items-center space-x-1">
+                <svg class="w-3.5 h-3.5 text-white fill-white" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" stroke="none"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+                <svg class="w-3.5 h-3.5 text-white fill-white" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" stroke="none"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+                <svg class="w-3.5 h-3.5 text-white fill-white" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" stroke="none"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+                <svg class="w-3.5 h-3.5 text-white fill-white" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" stroke="none"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+                <svg class="w-3.5 h-3.5 text-white fill-white" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" stroke="none"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+              </div>
+              <span class="text-[11px] font-semibold text-white tracking-[0.2em] uppercase font-mono">
+                3000+ Customers // Certified Standard
+              </span>
+            </div>
+
+            <!-- Call To Action Button Pills -->
+            <div class="flex flex-wrap items-center gap-6 opacity-0 animate-fade-in-up" style="animation-delay: 0.7s; animation-fill-mode: forwards;">
+              <button id="chat-toggle-btn" class="px-10 py-4 border border-white bg-white text-black text-xs font-bold uppercase tracking-widest hover:bg-transparent hover:text-white transition-colors duration-300">
+                Chat With Us
+              </button>
+              <a href="#section-2" class="text-xs font-bold uppercase tracking-widest border-b border-white/30 hover:border-white pb-1 transition-colors duration-200">
+                Our Works
+              </a>
+            </div>
+          </div>
+
+          <!-- Right Hero Interactive Panels Section -->
+          <div class="lg:col-span-4 lg:col-start-9 flex flex-col space-y-10 lg:space-y-16 justify-center">
+            
+            <!-- Interactive Explore Slide Card -->
+            <div class="w-full max-w-md bg-white/[0.05] border border-white/15 p-8 relative overflow-hidden backdrop-blur-lg shadow-[0_8px_32px_0_rgba(255,255,255,0.03)] transition-all duration-300 hover:border-white/35 hover:bg-white/[0.12] opacity-0 animate-fade-in-up pointer-events-auto" style="animation-delay: 0.5s; animation-fill-mode: forwards;">
+              <!-- Top micro elements for branding look -->
+              <div class="flex items-center justify-between mb-8">
+                <span id="hero-slider-module" class="text-[10px] text-white/40 uppercase tracking-[0.2em] font-mono transition-opacity duration-300">
+                  SYSTEM MODULE // 01
+                </span>
+                <div id="hero-slider-dots" class="flex space-x-2">
+                  <button class="h-[2px] transition-all duration-300 bg-white w-5"></button>
+                  <button class="h-[2px] transition-all duration-300 bg-white/20 w-3 cursor-pointer"></button>
+                  <button class="h-[2px] transition-all duration-300 bg-white/20 w-3 cursor-pointer"></button>
+                  <button class="h-[2px] transition-all duration-300 bg-white/20 w-3 cursor-pointer"></button>
+                </div>
+              </div>
+
+              <div class="space-y-4">
+                <div class="space-y-3">
+                  <h3 id="hero-slider-title" class="text-2xl font-bold text-white tracking-tight transition-opacity duration-300">
+                    Design to Explore
+                  </h3>
+                  <p id="hero-slider-desc" class="text-sm text-white leading-relaxed transition-opacity duration-300 min-h-[60px]">
+                    Creating immersive, beautiful, and tactile design systems from scratch for spatial computing.
+                  </p>
+                </div>
+              </div>
+
+              <!-- Navigation Buttons -->
+              <div class="flex items-center justify-between mt-8 pt-5 border-t border-white/10">
+                <span class="text-[10px] text-white uppercase tracking-[0.2em] font-mono">
+                  Interactive UI
+                </span>
+                <div class="flex space-x-2">
+                  <button id="hero-slider-prev" class="w-9 h-9 border border-white/15 flex items-center justify-center hover:bg-white/5 hover:border-white text-white transition-all duration-200">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="w-4 h-4"><path d="m15 18-6-6 6-6"/></svg>
+                  </button>
+                  <button id="hero-slider-next" class="w-9 h-9 border border-white/15 flex items-center justify-center hover:bg-white/5 hover:border-white text-white transition-all duration-200">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="w-4 h-4"><path d="m9 18 6-6-6-6"/></svg>
+                  </button>
+                </div>
+              </div>
+            </div>
+
+            <!-- Premium Partners Logos -->
+            <div class="w-full space-y-4 opacity-0 animate-fade-in-up pointer-events-auto" style="animation-delay: 0.7s; animation-fill-mode: forwards;">
+              <div class="flex items-center justify-between">
+                <span class="text-[10px] text-white/40 uppercase tracking-[0.3em] font-bold block">
+                  Our Partners
+                </span>
+                <div class="h-[1px] flex-grow bg-white/10 ml-4"></div>
+              </div>
+
+              <div class="grid grid-cols-2 sm:grid-cols-3 gap-3">
+                <div class="group flex items-center space-x-2.5 px-4 py-3 bg-white/[0.03] border border-white/10 hover:bg-white/[0.10] hover:border-white/30 backdrop-blur-sm transition-all duration-300 cursor-pointer">
+                  <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="w-4 h-4 text-white/40 group-hover:text-white transition-colors duration-300"><path d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z"/></svg>
+                  <span class="text-xs font-medium text-white/60 group-hover:text-white transition-colors duration-300 font-mono tracking-wider">zantic</span>
+                </div>
+                <div class="group flex items-center space-x-2.5 px-4 py-3 bg-white/[0.03] border border-white/10 hover:bg-white/[0.10] hover:border-white/30 backdrop-blur-sm transition-all duration-300 cursor-pointer">
+                  <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="w-4 h-4 text-white/40 group-hover:text-white transition-colors duration-300"><path d="M2 3h6a4 4 0 0 1 4 4v14a3 3 0 0 0-3-3H2z"/><path d="M22 3h-6a4 4 0 0 0-4 4v14a3 3 0 0 1 3-3h7z"/></svg>
+                  <span class="text-xs font-medium text-white/60 group-hover:text-white transition-colors duration-300 font-mono tracking-wider">BookStore</span>
+                </div>
+                <div class="group flex items-center space-x-2.5 px-4 py-3 bg-white/[0.03] border border-white/10 hover:bg-white/[0.10] hover:border-white/30 backdrop-blur-sm transition-all duration-300 cursor-pointer">
+                  <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="w-4 h-4 text-white/40 group-hover:text-white transition-colors duration-300"><path d="M20 13c0 5-3.5 7.5-7.66 8.95a1 1 0 0 1-.67-.01C7.5 20.5 4 18 4 13V6a1 1 0 0 1 1-1c2-1 4-2 8-4 4 2 6 3 8 4a1 1 0 0 1 1 1v7z"/></svg>
+                  <span class="text-xs font-medium text-white/60 group-hover:text-white transition-colors duration-300 font-mono tracking-wider">Wager</span>
+                </div>
+                <div class="group flex items-center space-x-2.5 px-4 py-3 bg-white/[0.03] border border-white/10 hover:bg-white/[0.10] hover:border-white/30 backdrop-blur-sm transition-all duration-300 cursor-pointer">
+                  <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="w-4 h-4 text-white/40 group-hover:text-white transition-colors duration-300"><polyline points="16 3 21 3 21 8"/><line x1="4" x2="21" y1="20" y2="3"/><polyline points="21 16 21 21 16 21"/><line x1="15" x2="21" y1="15" y2="21"/><line x1="4" x2="9" y1="4" y2="9"/></svg>
+                  <span class="text-xs font-medium text-white/60 group-hover:text-white transition-colors duration-300 font-mono tracking-wider">Clone</span>
+                </div>
+                <div class="group flex items-center space-x-2.5 px-4 py-3 bg-white/[0.03] border border-white/10 hover:bg-white/[0.10] hover:border-white/30 backdrop-blur-sm transition-all duration-300 cursor-pointer">
+                  <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="w-4 h-4 text-white/40 group-hover:text-white transition-colors duration-300"><line x1="3" x2="21" y1="22" y2="22"/><line x1="6" x2="6" y1="18" y2="11"/><line x1="10" x2="10" y1="18" y2="11"/><line x1="14" x2="14" y1="18" y2="11"/><line x1="18" x2="18" y1="18" y2="11"/><polygon points="12 2 20 7 4 7"/></svg>
+                  <span class="text-xs font-medium text-white/60 group-hover:text-white transition-colors duration-300 font-mono tracking-wider">Mercury</span>
+                </div>
+                <div class="group flex items-center space-x-2.5 px-4 py-3 bg-white/[0.03] border border-white/10 hover:bg-white/[0.10] hover:border-white/30 backdrop-blur-sm transition-all duration-300 cursor-pointer">
+                  <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="w-4 h-4 text-white/40 group-hover:text-white transition-colors duration-300"><circle cx="12" cy="12" r="10"/><path d="M9.09 9a3 3 0 0 1 5.83 1c0 2-3 3-3 3"/><line x1="12" x2="12.01" y1="17" y2="17"/></svg>
+                  <span class="text-xs font-medium text-white/60 group-hover:text-white transition-colors duration-300 font-mono tracking-wider">Crona</span>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Architecture Capabilities (8 boxes) -->
+      <div class="w-full max-w-7xl mx-auto px-6 md:px-12 lg:px-20 pt-16 pb-2 pointer-events-none">
+        <div class="mb-16">
+          <span class="text-[11px] text-white uppercase tracking-[0.2em] font-mono font-bold block">
+            ARCHITECTURE CAPABILITIES
+          </span>
+        </div>
+
+        <div class="flex flex-col relative pointer-events-auto mt-10">
+          <!-- Box 1 -->
+          <div class="w-full flex justify-start">
+            <div class="w-full max-w-[200px] aspect-square bg-white/[0.06] border border-white/15 p-6 flex flex-col justify-between backdrop-blur-lg shadow-[0_8px_32px_0_rgba(255,255,255,0.03)] transition-all duration-300 hover:border-white/35 hover:bg-white/[0.15] group">
+              <div>
+                <div class="w-10 h-10 rounded-full bg-white flex items-center justify-center mb-4 text-black transition-transform duration-350 group-hover:scale-105">
+                  <svg class="w-5 h-5 text-black" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/><path d="m9 12 2 2 4-4"/></svg>
+                </div>
+                <h3 class="text-base font-bold text-white tracking-tight mb-2">Advanced secure system</h3>
+              </div>
+              <p class="text-[11px] text-white/60 leading-relaxed font-sans">Advanced protection to keep transactions safe and reliable.</p>
+            </div>
+          </div>
+
+          <!-- Box 2 -->
+          <div class="w-full flex justify-end mt-6 md:-mt-20">
+            <div class="w-full max-w-[200px] aspect-square bg-white/[0.06] border border-white/15 p-6 flex flex-col justify-between backdrop-blur-lg shadow-[0_8px_32px_0_rgba(255,255,255,0.03)] transition-all duration-300 hover:border-white/35 hover:bg-white/[0.15] group">
+              <div>
+                <div class="w-10 h-10 rounded-full bg-white flex items-center justify-center mb-4 text-black transition-transform duration-350 group-hover:scale-105">
+                  <svg class="w-5 h-5 text-black" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><polyline points="16 11 18 13 22 9"/></svg>
+                </div>
+                <h3 class="text-base font-bold text-white tracking-tight mb-2">Seamless user access</h3>
+              </div>
+              <p class="text-[11px] text-white/60 leading-relaxed font-sans">Seamless experience for managing finances anytime, anywhere.</p>
+            </div>
+          </div>
+
+          <!-- Box 3 -->
+          <div class="w-full flex justify-start mt-6 md:-mt-20">
+            <div class="w-full max-w-[200px] aspect-square bg-white/[0.06] border border-white/15 p-6 flex flex-col justify-between backdrop-blur-lg shadow-[0_8px_32px_0_rgba(255,255,255,0.03)] transition-all duration-300 hover:border-white/35 hover:bg-white/[0.15] group">
+              <div>
+                <div class="w-10 h-10 rounded-full bg-white flex items-center justify-center mb-4 text-black transition-transform duration-350 group-hover:scale-105">
+                  <svg class="w-5 h-5 text-black" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="4" y="4" width="16" height="16" rx="2" ry="2"/><rect x="9" y="9" width="6" height="6"/><line x1="9" y1="1" x2="9" y2="4"/><line x1="15" y1="1" x2="15" y2="4"/><line x1="9" y1="20" x2="9" y2="23"/><line x1="15" y1="20" x2="15" y2="23"/><line x1="20" y1="9" x2="23" y2="9"/><line x1="20" y1="14" x2="23" y2="14"/><line x1="1" y1="9" x2="4" y2="9"/><line x1="1" y1="14" x2="4" y2="14"/></svg>
+                </div>
+                <h3 class="text-base font-bold text-white tracking-tight mb-2">Edge computing core</h3>
+              </div>
+              <p class="text-[11px] text-white/60 leading-relaxed font-sans">Sub-millisecond processing speeds powered by modern serverless hardware.</p>
+            </div>
+          </div>
+
+          <!-- Box 4 -->
+          <div class="w-full flex justify-end mt-6 md:-mt-20">
+            <div class="w-full max-w-[200px] aspect-square bg-white/[0.06] border border-white/15 p-6 flex flex-col justify-between backdrop-blur-lg shadow-[0_8px_32px_0_rgba(255,255,255,0.03)] transition-all duration-300 hover:border-white/35 hover:bg-white/[0.15] group">
+              <div>
+                <div class="w-10 h-10 rounded-full bg-white flex items-center justify-center mb-4 text-black transition-transform duration-350 group-hover:scale-105">
+                  <svg class="w-5 h-5 text-black" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/></svg>
+                </div>
+                <h3 class="text-base font-bold text-white tracking-tight mb-2">Instant synchronization</h3>
+              </div>
+              <p class="text-[11px] text-white/60 leading-relaxed font-sans">Zero latency state distribution updates across all network nodes.</p>
+            </div>
+          </div>
+
+          <!-- Box 5 -->
+          <div class="w-full flex justify-start mt-6 md:-mt-20">
+            <div class="w-full max-w-[200px] aspect-square bg-white/[0.06] border border-white/15 p-6 flex flex-col justify-between backdrop-blur-lg shadow-[0_8px_32px_0_rgba(255,255,255,0.03)] transition-all duration-300 hover:border-white/35 hover:bg-white/[0.15] group">
+              <div>
+                <div class="w-10 h-10 rounded-full bg-white flex items-center justify-center mb-4 text-black transition-transform duration-350 group-hover:scale-105">
+                  <svg class="w-5 h-5 text-black" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polygon points="12 2 2 7 12 12 22 7 12 2"/><polyline points="2 17 12 22 22 17"/><polyline points="2 12 12 17 22 12"/></svg>
+                </div>
+                <h3 class="text-base font-bold text-white tracking-tight mb-2">Modular infrastructure</h3>
+              </div>
+              <p class="text-[11px] text-white/60 leading-relaxed font-sans">Adaptable container blocks designed for instant scaling and zero downtime.</p>
+            </div>
+          </div>
+
+          <!-- Box 6 -->
+          <div class="w-full flex justify-end mt-6 md:-mt-20">
+            <div class="w-full max-w-[200px] aspect-square bg-white/[0.06] border border-white/15 p-6 flex flex-col justify-between backdrop-blur-lg shadow-[0_8px_32px_0_rgba(255,255,255,0.03)] transition-all duration-300 hover:border-white/35 hover:bg-white/[0.15] group">
+              <div>
+                <div class="w-10 h-10 rounded-full bg-white flex items-center justify-center mb-4 text-black transition-transform duration-350 group-hover:scale-105">
+                  <svg class="w-5 h-5 text-black" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="22 12 18 12 15 21 9 3 6 12 2 12"/></svg>
+                </div>
+                <h3 class="text-base font-bold text-white tracking-tight mb-2">Predictive analytics</h3>
+              </div>
+              <p class="text-[11px] text-white/60 leading-relaxed font-sans">Smart forecasting engines anticipating user requirements with deep neural models.</p>
+            </div>
+          </div>
+
+          <!-- Box 7 -->
+          <div class="w-full flex justify-start mt-6 md:-mt-20">
+            <div class="w-full max-w-[200px] aspect-square bg-white/[0.06] border border-white/15 p-6 flex flex-col justify-between backdrop-blur-lg shadow-[0_8px_32px_0_rgba(255,255,255,0.03)] transition-all duration-300 hover:border-white/35 hover:bg-white/[0.15] group">
+              <div>
+                <div class="w-10 h-10 rounded-full bg-white flex items-center justify-center mb-4 text-black transition-transform duration-350 group-hover:scale-105">
+                  <svg class="w-5 h-5 text-black" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M2 12s3-7 10-7 10 7 10 7-3 7-10 7-10-7-10-7Z"/><circle cx="12" cy="12" r="3"/></svg>
+                </div>
+                <h3 class="text-base font-bold text-white tracking-tight mb-2">Real-time auditing</h3>
+              </div>
+              <p class="text-[11px] text-white/60 leading-relaxed font-sans">Continuous automated scanning for full compliance, visibility, and peace of mind.</p>
+            </div>
+          </div>
+
+          <!-- Box 8 -->
+          <div class="w-full flex justify-end mt-6 md:-mt-20">
+            <div class="w-full max-w-[200px] aspect-square bg-white/[0.06] border border-white/15 p-6 flex flex-col justify-between backdrop-blur-lg shadow-[0_8px_32px_0_rgba(255,255,255,0.03)] transition-all duration-300 hover:border-white/35 hover:bg-white/[0.15] group">
+              <div>
+                <div class="w-10 h-10 rounded-full bg-white flex items-center justify-center mb-4 text-black transition-transform duration-350 group-hover:scale-105">
+                  <svg class="w-5 h-5 text-black" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><line x1="2" y1="12" x2="22" y2="12"/><path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/></svg>
+                </div>
+                <h3 class="text-base font-bold text-white tracking-tight mb-2">Global reach network</h3>
+              </div>
+              <p class="text-[11px] text-white/60 leading-relaxed font-sans">Unified distribution gateways connecting global partners with absolute speed.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Development Framework // Operational Milestones -->
+      <div class="w-full max-w-7xl mx-auto px-6 md:px-12 lg:px-20 mt-[12vh] md:mt-[24vh] pt-12 pb-32 md:pb-40 border-t border-white/10 pointer-events-auto">
+        <div class="mb-6">
+          <span class="text-[10px] text-white uppercase tracking-[0.25em] font-mono font-bold block">
+            Development Framework // Operational Milestones
+          </span>
+        </div>
+
+        <div class="grid grid-cols-2 md:grid-cols-4 gap-x-8 md:gap-x-16 gap-y-12 md:gap-y-20 py-10 justify-items-center">
+          <!-- Milestone 1: Up -->
+          <div class="w-full flex justify-center md:translate-y-0 transition-transform duration-500 hover:scale-105">
+            <button class="flex items-center justify-center space-x-3 px-6 py-3.5 w-full border border-white/20 bg-white/[0.08] backdrop-blur-md hover:bg-white/[0.18] hover:border-white/45 text-white transition-all duration-300 cursor-pointer rounded-full">
+              <span class="w-2 h-2 rounded-full bg-white"></span>
+              <span class="text-xs font-medium tracking-wide uppercase font-sans">Market research</span>
+            </button>
+          </div>
+          <!-- Milestone 2: Down -->
+          <div class="w-full flex justify-center md:translate-y-10 transition-transform duration-500 hover:scale-105">
+            <button class="flex items-center justify-center space-x-3 px-6 py-3.5 w-full border border-white/20 bg-white/[0.08] backdrop-blur-md hover:bg-white/[0.18] hover:border-white/45 text-white transition-all duration-300 cursor-pointer rounded-full">
+              <span class="w-2 h-2 rounded-full bg-white"></span>
+              <span class="text-xs font-medium tracking-wide uppercase font-sans">Product design</span>
+            </button>
+          </div>
+          <!-- Milestone 3: Up -->
+          <div class="w-full flex justify-center md:translate-y-0 transition-transform duration-500 hover:scale-105">
+            <button class="flex items-center justify-center space-x-3 px-6 py-3.5 w-full border border-white/20 bg-white/[0.08] backdrop-blur-md hover:bg-white/[0.18] hover:border-white/45 text-white transition-all duration-300 cursor-pointer rounded-full">
+              <span class="w-2 h-2 rounded-full bg-white"></span>
+              <span class="text-xs font-medium tracking-wide uppercase font-sans">Beta launch</span>
+            </button>
+          </div>
+          <!-- Milestone 4: Down -->
+          <div class="w-full flex justify-center md:translate-y-10 transition-transform duration-500 hover:scale-105">
+            <button class="flex items-center justify-center space-x-3 px-6 py-3.5 w-full border border-white/20 bg-white/[0.08] backdrop-blur-md hover:bg-white/[0.18] hover:border-white/45 text-white transition-all duration-300 cursor-pointer rounded-full">
+              <span class="w-2 h-2 rounded-full bg-white"></span>
+              <span class="text-xs font-medium tracking-wide uppercase font-sans">User needs analysis</span>
+            </button>
+          </div>
+          <!-- Milestone 5: Down -->
+          <div class="w-full flex justify-center md:translate-y-10 transition-transform duration-500 hover:scale-105">
+            <button class="flex items-center justify-center space-x-3 px-6 py-3.5 w-full border border-white/20 bg-white/[0.08] backdrop-blur-md hover:bg-white/[0.18] hover:border-white/45 text-white transition-all duration-300 cursor-pointer rounded-full">
+              <span class="w-2 h-2 rounded-full bg-white"></span>
+              <span class="text-xs font-medium tracking-wide uppercase font-sans">System development</span>
+            </button>
+          </div>
+          <!-- Milestone 6: Up -->
+          <div class="w-full flex justify-center md:translate-y-0 transition-transform duration-500 hover:scale-105">
+            <button class="flex items-center justify-center space-x-3 px-6 py-3.5 w-full border border-white/20 bg-white/[0.08] backdrop-blur-md hover:bg-white/[0.18] hover:border-white/45 text-white transition-all duration-300 cursor-pointer rounded-full">
+              <span class="w-2 h-2 rounded-full bg-white"></span>
+              <span class="text-xs font-medium tracking-wide uppercase font-sans">User feedback</span>
+            </button>
+          </div>
+          <!-- Milestone 7: Down -->
+          <div class="w-full flex justify-center md:translate-y-10 transition-transform duration-500 hover:scale-105">
+            <button class="flex items-center justify-center space-x-3 px-6 py-3.5 w-full border border-white/20 bg-white/[0.08] backdrop-blur-md hover:bg-white/[0.18] hover:border-white/45 text-white transition-all duration-300 cursor-pointer rounded-full">
+              <span class="w-2 h-2 rounded-full bg-white"></span>
+              <span class="text-xs font-medium tracking-wide uppercase font-sans">System development</span>
+            </button>
+          </div>
+          <!-- Milestone 8: Up -->
+          <div class="w-full flex justify-center md:translate-y-0 transition-transform duration-500 hover:scale-105">
+            <button class="flex items-center justify-center space-x-3 px-6 py-3.5 w-full border border-white/20 bg-white/[0.08] backdrop-blur-md hover:bg-white/[0.18] hover:border-white/45 text-white transition-all duration-300 cursor-pointer rounded-full">
+              <span class="w-2 h-2 rounded-full bg-white"></span>
+              <span class="text-xs font-medium tracking-wide uppercase font-sans">Performance optimization</span>
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Plain black section that appears after the first animation scrolls out -->
+  <div id="section-2" class="black-section relative bg-[#090D1A] text-slate-100 font-sans overflow-hidden py-16 md:py-24 z-10 flex flex-col justify-between">
+    <!-- Decorative ambient glowing orbs -->
+    <div class="absolute top-[-10%] left-1/4 w-[600px] h-[600px] bg-sky-500/5 rounded-full blur-[150px] pointer-events-none"></div>
+    <div class="absolute top-[20%] right-1/4 w-[500px] h-[500px] bg-orange-500/5 rounded-full blur-[130px] pointer-events-none"></div>
+    
+    <!-- Grid pattern overlay for tech aesthetic -->
+    <div class="absolute inset-0 bg-[linear-gradient(to_right,#1e293b12_1px,transparent_1px),linear-gradient(to_bottom,#1e293b12_1px,transparent_1px)] bg-[size:4rem_4rem] pointer-events-none"></div>
+
+    <main class="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16 md:py-24 flex-grow flex flex-col justify-center items-center w-full">
+      <!-- Header Section -->
+      <div class="text-center max-w-2xl mx-auto mb-12 md:mb-16">
+        <h1 class="text-4xl sm:text-5xl md:text-6xl font-bold tracking-tight text-white mb-6 font-display">
+          Pricing
+        </h1>
+        <p class="text-slate-400 text-base sm:text-lg leading-relaxed px-4">
+          Safely collect, process, and share your data with the plan that's <span class="block sm:inline">right for you.</span>
+        </p>
+      </div>
+
+      <!-- Pricing Cards Grid -->
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-8 lg:gap-10 w-full max-w-6xl items-stretch px-2 sm:px-0">
+        
+        <!-- Basic Plan -->
+        <div class="group relative bg-transparent border border-slate-800/80 rounded-[28px] p-6 sm:p-8 flex flex-col justify-between transition-all duration-300 hover:border-slate-700/60 hover:bg-slate-900/10 hover:shadow-[0_20px_50px_rgba(0,0,0,0.4)]" id="plan-card-basic">
+          <div>
+            <div class="mb-6 rounded-2xl overflow-hidden relative">
+              <img src="pricing/src/assets/images/regenerated_image_1783141308252.jpg" alt="Basic VR Headset" class="w-full h-auto object-cover aspect-[1.7]" />
+            </div>
+            <h3 class="text-2xl font-bold text-white tracking-tight mb-2">Basic</h3>
+            <div class="flex items-baseline gap-2 mt-4 mb-3">
+              <span class="text-4xl sm:text-5xl font-bold text-white tracking-tight font-display">$100</span>
+              <span class="text-sm text-slate-400">per month</span>
+            </div>
+            <p class="text-slate-400 text-[14px] leading-relaxed min-h-[48px] mb-6">
+              Sleek spatial audio and HD immersive display for personal use
+            </p>
+            <div class="border-t border-slate-800/80 my-5"></div>
+            <ul class="space-y-4 mb-8">
+              <li class="flex items-start gap-3">
+                <div class="flex-shrink-0 w-5 h-5 rounded-full bg-white flex items-center justify-center mt-0.5 shadow-sm">
+                  <svg class="w-3.5 h-3.5 text-[#090D1A] stroke-[3.5]" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="3.5"><path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7"/></svg>
+                </div>
+                <span class="text-slate-200 text-sm font-medium leading-tight">Full HD Display Mode</span>
+              </li>
+              <li class="flex items-start gap-3">
+                <div class="flex-shrink-0 w-5 h-5 rounded-full bg-white flex items-center justify-center mt-0.5 shadow-sm">
+                  <svg class="w-3.5 h-3.5 text-[#090D1A] stroke-[3.5]" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="3.5"><path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7"/></svg>
+                </div>
+                <span class="text-slate-200 text-sm font-medium leading-tight">Spatial Audio Engine</span>
+              </li>
+              <li class="flex items-start gap-3">
+                <div class="flex-shrink-0 w-5 h-5 rounded-full bg-white flex items-center justify-center mt-0.5 shadow-sm">
+                  <svg class="w-3.5 h-3.5 text-[#090D1A] stroke-[3.5]" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="3.5"><path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7"/></svg>
+                </div>
+                <span class="text-slate-200 text-sm font-medium leading-tight">Standard Comfort Headstrap</span>
+              </li>
+            </ul>
+          </div>
+          <button onclick="openCheckout('Basic', 100)" class="w-full py-3.5 px-6 rounded-full text-sm font-semibold text-center bg-white text-slate-950 hover:bg-slate-100 active:scale-[0.98] transition-all duration-300 cursor-pointer">
+            Choose Plan
+          </button>
+        </div>
+
+        <!-- Standard Plan -->
+        <div class="group relative bg-transparent border border-slate-800/80 rounded-[28px] p-6 sm:p-8 flex flex-col justify-between transition-all duration-300 hover:border-slate-700/60 hover:bg-slate-900/10 hover:shadow-[0_20px_50px_rgba(0,0,0,0.4)]" id="plan-card-standard">
+          <div class="absolute inset-0 bg-gradient-to-b from-orange-500/5 via-transparent to-transparent rounded-[28px] pointer-events-none"></div>
+          <div>
+            <div class="mb-6 rounded-2xl overflow-hidden relative">
+              <img src="pricing/src/assets/images/regenerated_image_1783141309025.jpg" alt="Standard VR Headset" class="w-full h-auto object-cover aspect-[1.7]" />
+            </div>
+            <div class="mb-4">
+              <span class="inline-flex items-center px-3.5 py-1 rounded-full text-[11px] font-semibold bg-[#1F2435] text-slate-300 border border-slate-700/60 tracking-wide uppercase">
+                Popular
+              </span>
+            </div>
+            <h3 class="text-2xl font-bold text-white tracking-tight mb-2">Standard</h3>
+            <div class="flex items-baseline gap-2 mt-4 mb-3">
+              <span class="text-4xl sm:text-5xl font-bold text-white tracking-tight font-display">$150</span>
+              <span class="text-sm text-slate-400">per month</span>
+            </div>
+            <p class="text-slate-400 text-[14px] leading-relaxed min-h-[48px] mb-6">
+              Ultra HD visuals with dual-glowing smart visor tracking
+            </p>
+            <div class="border-t border-slate-800/80 my-5"></div>
+            <ul class="space-y-4 mb-8">
+              <li class="flex items-start gap-3">
+                <div class="flex-shrink-0 w-5 h-5 rounded-full bg-white flex items-center justify-center mt-0.5 shadow-sm">
+                  <svg class="w-3.5 h-3.5 text-[#090D1A] stroke-[3.5]" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="3.5"><path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7"/></svg>
+                </div>
+                <span class="text-slate-200 text-sm font-medium leading-tight">Dual-LED Eye Tracking</span>
+              </li>
+              <li class="flex items-start gap-3">
+                <div class="flex-shrink-0 w-5 h-5 rounded-full bg-white flex items-center justify-center mt-0.5 shadow-sm">
+                  <svg class="w-3.5 h-3.5 text-[#090D1A] stroke-[3.5]" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="3.5"><path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7"/></svg>
+                </div>
+                <span class="text-slate-200 text-sm font-medium leading-tight">4K Ultra-Wide Visuals</span>
+              </li>
+              <li class="flex items-start gap-3">
+                <div class="flex-shrink-0 w-5 h-5 rounded-full bg-white flex items-center justify-center mt-0.5 shadow-sm">
+                  <svg class="w-3.5 h-3.5 text-[#090D1A] stroke-[3.5]" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="3.5"><path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7"/></svg>
+                </div>
+                <span class="text-slate-200 text-sm font-medium leading-tight">Ergonomic Balance Strap</span>
+              </li>
+            </ul>
+          </div>
+          <button onclick="openCheckout('Standard', 150)" class="w-full py-3.5 px-6 rounded-full text-sm font-semibold text-center bg-white text-slate-950 hover:bg-slate-100 shadow-[0_4px_20px_rgba(255,255,255,0.15)] active:scale-[0.98] transition-all duration-300 cursor-pointer">
+            Choose Plan
+          </button>
+        </div>
+
+        <!-- Pro Plan -->
+        <div class="group relative bg-transparent border border-slate-800/80 rounded-[28px] p-6 sm:p-8 flex flex-col justify-between transition-all duration-300 hover:border-slate-700/60 hover:bg-slate-900/10 hover:shadow-[0_20px_50px_rgba(0,0,0,0.4)]" id="plan-card-pro">
+          <div>
+            <div class="mb-6 rounded-2xl overflow-hidden relative">
+              <img src="pricing/src/assets/images/regenerated_image_1783141309774.jpg" alt="Pro VR Headset" class="w-full h-auto object-cover aspect-[1.7]" />
+            </div>
+            <h3 class="text-2xl font-bold text-white tracking-tight mb-2">Pro</h3>
+            <div class="flex items-baseline gap-2 mt-4 mb-3">
+              <span class="text-4xl sm:text-5xl font-bold text-white tracking-tight font-display">$200</span>
+              <span class="text-sm text-slate-400">per month</span>
+            </div>
+            <p class="text-slate-400 text-[14px] leading-relaxed min-h-[48px] mb-6">
+              Full dynamic spectrum display, developer tools, and tactile feedback
+            </p>
+            <div class="border-t border-slate-800/80 my-5"></div>
+            <ul class="space-y-4 mb-8">
+              <li class="flex items-start gap-3">
+                <div class="flex-shrink-0 w-5 h-5 rounded-full bg-white flex items-center justify-center mt-0.5 shadow-sm">
+                  <svg class="w-3.5 h-3.5 text-[#090D1A] stroke-[3.5]" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="3.5"><path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7"/></svg>
+                </div>
+                <span class="text-slate-200 text-sm font-medium leading-tight">Infinite Refresh Rate Mode</span>
+              </li>
+              <li class="flex items-start gap-3">
+                <div class="flex-shrink-0 w-5 h-5 rounded-full bg-white flex items-center justify-center mt-0.5 shadow-sm">
+                  <svg class="w-3.5 h-3.5 text-[#090D1A] stroke-[3.5]" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="3.5"><path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7"/></svg>
+                </div>
+                <span class="text-slate-200 text-sm font-medium leading-tight">Full Haptic Sensory Suit Support</span>
+              </li>
+              <li class="flex items-start gap-3">
+                <div class="flex-shrink-0 w-5 h-5 rounded-full bg-white flex items-center justify-center mt-0.5 shadow-sm">
+                  <svg class="w-3.5 h-3.5 text-[#090D1A] stroke-[3.5]" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="3.5"><path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7"/></svg>
+                </div>
+                <span class="text-slate-200 text-sm font-medium leading-tight">Direct Developer Workspace Access</span>
+              </li>
+            </ul>
+          </div>
+          <button onclick="openCheckout('Pro', 200)" class="w-full py-3.5 px-6 rounded-full text-sm font-semibold text-center bg-white text-slate-950 hover:bg-slate-100 active:scale-[0.98] transition-all duration-300 cursor-pointer">
+            Choose Plan
+          </button>
+        </div>
+
+      </div>
+    </main>
+  </div>
+
+  <!-- Scroll Container 2 -->
+  <div id="section-3" class="scroll-container seq-2 relative">
+    <!-- Canvas container keeps the canvas centered and viewport-fixed -->
+    <div class="canvas-container" style="z-index: 0;">
+      <canvas id="animation-canvas-2"></canvas>
+    </div>
+
+    <!-- Scrolling Content Overlay -->
+    <div class="relative z-10 w-full -mt-[100vh] text-white font-sans selection:bg-white selection:text-black">
+      
+      <!-- Floating Header Badge (Top Right) -->
+      <div class="absolute top-6 right-6 hidden xl:flex flex-col border border-white/10 rounded-xl p-4 bg-white/5 backdrop-blur-md max-w-[240px] z-50">
+        <div class="text-2xl font-light italic text-white flex items-baseline gap-1">
+          8k <span class="text-xs align-super text-white/80 font-normal">UHD</span>
+        </div>
+        <div class="text-[10px] uppercase tracking-widest text-white/60 font-semibold mt-1">
+          Display Resolution
+        </div>
+        <div class="text-[10px] text-white/40 mt-1 leading-relaxed">
+          delivering ultimate visual realism per eye
+        </div>
+      </div>
+
+      <!-- Main Container -->
+      <div class="max-w-7xl mx-auto px-6 md:px-12 lg:px-16 py-12 md:py-20 pointer-events-none">
+        
+        <!-- TOP SECTION: Hero & Introductory text -->
+        <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 items-start mb-24 md:mb-32 mt-12 pointer-events-auto">
+          
+          <!-- Main big heading -->
+          <div class="lg:col-span-7">
+            <h1 class="text-4xl md:text-[60px] lg:text-[60px] font-normal tracking-tight leading-[1.1] opacity-0 animate-on-scroll" style="animation: fade-in-up 0.8s ease-out forwards; animation-play-state: paused;">
+              We offer next level<br />
+              <span class="italic relative inline-block font-normal pt-2">
+                immersion
+                <span class="absolute bottom-1 left-0 w-full h-[3px] bg-white"></span>
+              </span>
+            </h1>
+          </div>
+
+          <!-- Right column: Explanatory paragraph -->
+          <div class="lg:col-span-5 lg:pt-12">
+            <p class="text-white/70 text-base md:text-lg leading-relaxed font-light tracking-wide max-w-xl opacity-0 animate-on-scroll" style="animation: fade-in-up 0.8s ease-out 0.2s forwards; animation-play-state: paused;">
+              Step into the future of spatial computing. Built with lightweight carbon-fiber materials, dual micro-OLED 8K display panels, and high-fidelity dynamic surround sound. Designed for gamers, creators, and spatial professionals seeking the ultimate visual and physical comfort.
+            </p>
+          </div>
+
+        </div>
+
+        <!-- METRICS SECTION: Three columns -->
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-8 md:gap-12 lg:gap-16 border-t border-white/5 pt-12 mb-36 md:mb-48 pointer-events-auto">
+          
+          <!-- Metric Column 1 -->
+          <div class="flex flex-col opacity-0 animate-on-scroll" style="animation: fade-in-up 0.6s ease-out forwards; animation-play-state: paused;">
+            <div class="h-[2px] w-full bg-teal-500/80 mb-8 rounded-full"></div>
+            <div class="text-6xl md:text-7xl lg:text-8xl font-light italic tracking-tight text-white flex items-baseline">
+              110<span class="text-3xl lg:text-4xl align-super ml-1 font-normal not-italic text-white/90">°</span>
+            </div>
+            <div class="text-xs uppercase tracking-[0.2em] font-semibold text-white mt-4 mb-2">
+              Field of View
+            </div>
+            <div class="text-xs text-white/50 leading-relaxed font-light">
+              wider lens coverage providing an fully immersive cinema-grade spatial environment
+            </div>
+          </div>
+
+          <!-- Metric Column 2 -->
+          <div class="flex flex-col opacity-0 animate-on-scroll" style="animation: fade-in-up 0.6s ease-out 0.1s forwards; animation-play-state: paused;">
+            <div class="h-[2px] w-full bg-indigo-500/80 mb-8 rounded-full"></div>
+            <div class="text-6xl md:text-7xl lg:text-8xl font-light italic tracking-tight text-white flex items-baseline">
+              120<span class="text-3xl lg:text-4xl align-super ml-1 font-normal not-italic text-white/90">Hz</span>
+            </div>
+            <div class="text-xs uppercase tracking-[0.2em] font-semibold text-white mt-4 mb-2">
+              Refresh Rate
+            </div>
+            <div class="text-xs text-white/50 leading-relaxed font-light">
+              buttery-smooth visual fluid transitions with zero motion sickness or screen flicker
+            </div>
+          </div>
+
+          <!-- Metric Column 3 -->
+          <div class="flex flex-col opacity-0 animate-on-scroll" style="animation: fade-in-up 0.6s ease-out 0.2s forwards; animation-play-state: paused;">
+            <div class="h-[2px] w-full bg-emerald-500/80 mb-8 rounded-full"></div>
+            <div class="text-6xl md:text-7xl lg:text-8xl font-light italic tracking-tight text-white flex items-baseline">
+              200<span class="text-3xl lg:text-4xl align-super ml-1 font-normal not-italic text-white/90">+</span>
+            </div>
+            <div class="text-xs uppercase tracking-[0.2em] font-semibold text-white mt-4 mb-2">
+              Virtual Spaces
+            </div>
+            <div class="text-xs text-white/50 leading-relaxed font-light">
+              pre-installed worlds and collaborative environments ready on initial startup
+            </div>
+          </div>
+
+        </div>
+
+        <!-- BOTTOM SECTION: Interactive Cards with Glassmorphism Background -->
+        <div class="mb-24 pointer-events-auto">
+          
+          <!-- Centered Small Uppercase Motto -->
+          <div class="text-center mb-16 px-4">
+            <span class="inline-block text-[10px] md:text-xs uppercase tracking-[0.25em] text-white/50 max-w-2xl leading-relaxed">
+              AT CG VR, DELIVERING UNPARALLELED SPATIAL COMPUTING AND IMMERSIVE VIRTUAL REALITY EXPERIENCES FOR GAMERS AND CREATORS
+            </span>
+          </div>
+
+          <!-- Zig-Zag Staggered Non-Colliding Layout -->
+          <div class="max-w-4xl mx-auto flex flex-col gap-10 md:gap-12 py-6 overflow-hidden">
+            
+            <!-- Card 1: Left-aligned -->
+            <div class="flex justify-start w-full opacity-0 animate-on-scroll" style="animation: slide-in-left 0.6s ease-out forwards; animation-play-state: paused;">
+              <div class="w-72 h-72 aspect-square flex flex-col justify-between border border-white/20 rounded-xl p-6 bg-transparent shadow-xl cursor-pointer hover:-translate-y-1.5 transition-transform duration-300">
+                <div>
+                  <div class="p-3 bg-white/5 rounded-xl border border-white/10 text-white/85 w-fit mb-4">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="22 12 18 12 15 21 9 3 6 12 2 12"/></svg>
+                  </div>
+                </div>
+                <div class="text-sm font-light text-white leading-relaxed tracking-wide">
+                  “Designed with ultralight carbon-fiber components for balanced weight distribution and endless, fatigue-free comfort.”
+                </div>
+              </div>
+            </div>
+
+            <!-- Card 2: Right-aligned -->
+            <div class="flex justify-end w-full opacity-0 animate-on-scroll" style="animation: slide-in-right 0.6s ease-out forwards; animation-play-state: paused;">
+              <div class="w-72 h-72 aspect-square flex flex-col justify-between border border-white/20 rounded-xl p-6 bg-transparent shadow-xl cursor-pointer hover:-translate-y-1.5 transition-transform duration-300">
+                <div>
+                  <div class="p-3 bg-white/5 rounded-xl border border-white/10 text-white/85 w-fit mb-4">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polygon points="12 2 2 7 12 12 22 7 12 2"/><polyline points="2 17 12 22 22 17"/><polyline points="2 12 12 17 22 12"/></svg>
+                  </div>
+                </div>
+                <div class="text-sm font-light text-white leading-relaxed tracking-wide">
+                  “Dual high-density micro-OLED displays eliminate the screen-door effect entirely, letting you lose yourself in flawless visual realism.”
+                </div>
+              </div>
+            </div>
+
+            <!-- Card 3: Left-aligned -->
+            <div class="flex justify-start w-full opacity-0 animate-on-scroll" style="animation: slide-in-left 0.6s ease-out forwards; animation-play-state: paused;">
+              <div class="w-72 h-72 aspect-square flex flex-col justify-between border border-white/20 rounded-xl p-6 bg-transparent shadow-xl cursor-pointer hover:-translate-y-1.5 transition-transform duration-300">
+                <div>
+                  <div class="p-3 bg-white/5 rounded-xl border border-white/10 text-white/85 w-fit mb-4">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M2 12s3-7 10-7 10 7 10 7-3 7-10 7-10-7-10-7Z"/><circle cx="12" cy="12" r="3"/></svg>
+                  </div>
+                </div>
+                <div class="text-sm font-light text-white leading-relaxed tracking-wide">
+                  “Advanced ultra-wide camera arrays and spatial depth-sensors track your hands and finger gestures with millimeter precision.”
+                </div>
+              </div>
+            </div>
+
+            <!-- Card 4: Right-aligned -->
+            <div class="flex justify-end w-full opacity-0 animate-on-scroll" style="animation: slide-in-right 0.6s ease-out forwards; animation-play-state: paused;">
+              <div class="w-72 h-72 aspect-square flex flex-col justify-between border border-white/20 rounded-xl p-6 bg-transparent shadow-xl cursor-pointer hover:-translate-y-1.5 transition-transform duration-300">
+                <div>
+                  <div class="p-3 bg-white/5 rounded-xl border border-white/10 text-white/85 w-fit mb-4">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect width="8" height="8" x="3" y="3" rx="2"/><rect width="8" height="8" x="13" y="3" rx="2"/><rect width="8" height="8" x="8" y="13" rx="2"/></svg>
+                  </div>
+                </div>
+                <div class="text-sm font-light text-white leading-relaxed tracking-wide">
+                  “Dynamic integrated surround sound drivers adapt instantly to your head orientation, rendering rich 3D sound fields.”
+                </div>
+              </div>
+            </div>
+
+            <!-- Card 5: Left-aligned -->
+            <div class="flex justify-start w-full opacity-0 animate-on-scroll" style="animation: slide-in-left 0.6s ease-out forwards; animation-play-state: paused;">
+              <div class="w-72 h-72 aspect-square flex flex-col justify-between border border-white/20 rounded-xl p-6 bg-transparent shadow-xl cursor-pointer hover:-translate-y-1.5 transition-transform duration-300">
+                <div>
+                  <div class="p-3 bg-white/5 rounded-xl border border-white/10 text-white/85 w-fit mb-4">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect width="16" height="16" x="4" y="4" rx="2"/><path d="M9 9h6v6H9z"/><path d="M9 1v3"/><path d="M15 1v3"/><path d="M9 20v3"/><path d="M15 20v3"/><path d="M20 9h3"/><path d="M20 14h3"/><path d="M1 9h3"/><path d="M1 14h3"/></svg>
+                  </div>
+                  <div class="text-[13px] font-semibold text-white mb-1.5 tracking-wide leading-snug">
+                    We offer complete virtual setups.
+                  </div>
+                </div>
+                <div class="text-[11px] font-light text-white/70 leading-relaxed overflow-hidden text-ellipsis">
+                  Switch seamlessly between hardcore spatial gaming, cinema screening, and immersive multi-monitor productive workspaces.
+                </div>
+              </div>
+            </div>
+
+          </div>
+
+        </div>
+
+        <!-- FOOTER SECTION: Minimal, Premium -->
+        <footer class="border-t border-white/10 pt-8 mt-16 pb-16 flex flex-col md:flex-row justify-between items-center gap-4 text-xs text-white/40 pointer-events-auto">
+          <div>
+            &copy; 2026 CG.VR. All rights reserved.
+          </div>
+          <div class="flex gap-6">
+            <span class="hover:text-white transition-colors cursor-pointer">Privacy Policy</span>
+            <span class="hover:text-white transition-colors cursor-pointer">Terms of Service</span>
+            <span class="hover:text-white transition-colors cursor-pointer">Cookie Settings</span>
+          </div>
+        </footer>
+
+      </div>
+    </div>
+  </div>
+
+  <!-- Section 4 -->
+  <div class="black-section-4 relative bg-black min-h-screen w-full z-20 overflow-hidden flex items-center justify-center">
+    <video 
+      src="https://res.cloudinary.com/lip5jd6b/video/upload/v1783149901/Generate_smooth_video_animation_1080p_202607041249_quvfqg.mp4" 
+      autoplay 
+      loop 
+      muted 
+      playsinline
+      class="absolute inset-0 w-full h-full object-cover pointer-events-none z-0"
+    ></video>
+    
+    <!-- Main Content Overlay -->
+    <div class="absolute inset-0 flex flex-col z-10 w-full h-full font-sans pointer-events-none">
+      <div class="flex-1 flex flex-col items-center justify-center relative w-full max-w-[1600px] mx-auto px-4 md:px-8">
+        
+        <!-- 3-Column Layout for Text and Center Space -->
+        <div class="grid grid-cols-1 md:grid-cols-[1fr_auto_1fr] items-center justify-center w-full gap-8 md:gap-0">
+          
+          <!-- Left Text -->
+          <div class="flex justify-center md:justify-end md:pr-6 lg:pr-12 pointer-events-auto">
+            <h1 class="text-white text-5xl sm:text-6xl md:text-7xl lg:text-[85px] font-medium tracking-tight whitespace-nowrap drop-shadow-2xl">
+              Out of time
+            </h1>
+          </div>
+
+          <!-- Center Space (For video to show through) -->
+          <div class="w-64 h-64 md:w-[350px] md:h-[350px] lg:w-[450px] lg:h-[450px] relative mx-auto flex shrink-0">
+          </div>
+
+          <!-- Right Text -->
+          <div class="flex justify-center md:justify-start md:pl-6 lg:pl-12 pointer-events-auto">
+            <h1 class="text-white text-5xl sm:text-6xl md:text-7xl lg:text-[85px] font-medium tracking-tight whitespace-nowrap drop-shadow-2xl">
+              and space
+            </h1>
+          </div>
+
+        </div>
+      </div>
+
+      <!-- Bottom Text Area -->
+      <div class="absolute bottom-10 md:bottom-16 w-full flex justify-center px-4 pointer-events-auto">
+        <p class="text-white/80 text-center text-xl md:text-2xl lg:text-[24px] font-medium leading-relaxed tracking-wide drop-shadow-lg uppercase">
+          Build to Withstand
+        </p>
+      </div>
+    </div>
+  </div>
+
+  <!-- Site Footer -->
+  <footer class="bg-[#050505] border-t border-white/10 pt-16 pb-8 px-6 md:px-12 lg:px-20 text-white font-sans relative z-30">
+    <div class="max-w-7xl mx-auto grid grid-cols-1 md:grid-cols-4 gap-12 mb-12">
+      <div class="space-y-4 md:col-span-2">
+        <div class="flex items-center space-x-3 cursor-pointer group">
+          <div class="relative w-6 h-6 flex items-center justify-center">
+            <div class="absolute inset-0 bg-white rotate-45 transition-transform duration-300 group-hover:rotate-90"></div>
+            <div class="absolute w-2 h-2 bg-black rotate-45"></div>
+          </div>
+          <span class="text-lg font-bold text-white tracking-wide">Zenrixa</span>
+        </div>
+        <p class="text-white/50 text-sm leading-relaxed max-w-sm">
+          Delivering unparalleled spatial computing and immersive virtual reality experiences for gamers and creators worldwide.
+        </p>
+      </div>
+      <div class="space-y-4">
+        <h4 class="text-sm font-semibold tracking-wider uppercase text-white/90">Company</h4>
+        <ul class="space-y-2 text-sm text-white/50">
+          <li><a href="#" class="hover:text-white transition-colors">About Us</a></li>
+          <li><a href="#" class="hover:text-white transition-colors">Careers</a></li>
+          <li><a href="#" class="hover:text-white transition-colors">Press</a></li>
+          <li><a href="#" class="hover:text-white transition-colors">Partners</a></li>
+        </ul>
+      </div>
+      <div class="space-y-4">
+        <h4 class="text-sm font-semibold tracking-wider uppercase text-white/90">Legal</h4>
+        <ul class="space-y-2 text-sm text-white/50">
+          <li><a href="#" class="hover:text-white transition-colors">Privacy Policy</a></li>
+          <li><a href="#" class="hover:text-white transition-colors">Terms of Service</a></li>
+          <li><a href="#" class="hover:text-white transition-colors">Cookie Policy</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="max-w-7xl mx-auto border-t border-white/10 pt-8 flex flex-col md:flex-row items-center justify-between gap-4 text-xs text-white/40">
+      <p>&copy; 2026 Zenrixa Inc. All rights reserved.</p>
+      <div class="flex space-x-4">
+        <a href="#" class="hover:text-white transition-colors">Twitter</a>
+        <a href="#" class="hover:text-white transition-colors">Instagram</a>
+        <a href="#" class="hover:text-white transition-colors">LinkedIn</a>
+      </div>
+    </div>
+  </footer>
+
+  <!-- SVG Sharpen Filter for pixel sharpness enhancement -->
+  <svg style="position: absolute; width: 0; height: 0; pointer-events: none; user-select: none;" xmlns="http://www.w3.org/2000/svg">
+    <defs>
+      <filter id="sharpen-filter">
+        <!-- Subtle sharpening matrix kernel -->
+        <feConvolveMatrix order="3" preserveAlpha="true" kernelMatrix="0 -0.12 0 -0.12 1.48 -0.12 0 -0.12 0"/>
+      </filter>
+    </defs>
+  </svg>
+
+  <!-- Checkout Modal Dialog -->
+  <div id="checkout-modal" class="fixed inset-0 z-[100] flex items-center justify-center p-4 sm:p-6 overflow-y-auto hidden opacity-0 transition-opacity duration-300">
+    <!-- Modal Backdrop -->
+    <div id="modal-backdrop" onclick="closeCheckout()" class="fixed inset-0 bg-black/80 backdrop-blur-md"></div>
+
+    <!-- Modal Body -->
+    <div class="relative w-full max-w-lg overflow-hidden shadow-2xl z-10 transform scale-95 transition-transform duration-300 rounded-3xl" style="background: rgba(15, 15, 15, 0.85); backdrop-filter: blur(12px); border: 1px solid rgba(255, 110, 0, 0.2);">
+      
+      <!-- Close Button -->
+      <button onclick="closeCheckout()" class="absolute top-4 right-4 text-white/50 hover:text-white bg-white/5 hover:bg-white/10 p-1.5 rounded-full transition-all" aria-label="Close modal">
+        <svg class="w-4 h-4" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12"/></svg>
+      </button>
+
+      <div class="p-6 sm:p-8">
+        <!-- Form Step -->
+        <div id="modal-form-step">
+          <!-- Header -->
+          <div class="mb-6 mt-2">
+            <h4 class="text-xl font-bold text-white tracking-tight">
+              Reviewing Order: <span id="modal-plan-name">Standard</span> Plan - $<span id="modal-plan-price">150</span>/month
+            </h4>
+          </div>
+
+          <!-- Checkout Form -->
+          <form id="payment-form" onsubmit="handleCheckoutSubmit(event)" class="space-y-4">
+            <!-- Name input -->
+            <div>
+              <label class="block text-xs font-semibold text-white/60 uppercase tracking-wider mb-1.5">
+                Cardholder Name
+              </label>
+              <input type="text" id="card-name" required placeholder="John Doe" class="w-full bg-white/5 border border-white/10 rounded-xl px-4 py-3 text-sm text-white placeholder-white/40 focus:outline-none focus:border-orange-500/50 focus:ring-1 focus:ring-orange-500/50 transition-all" />
+            </div>
+
+            <!-- Credit Card Info -->
+            <div>
+              <label class="block text-xs font-semibold text-white/60 uppercase tracking-wider mb-1.5">
+                Fake Card Number
+              </label>
+              <div class="relative">
+                <input type="text" id="card-number" required placeholder="4111 •••• •••• ••••" class="w-full bg-white/5 border border-white/10 rounded-xl pl-11 pr-4 py-3 text-sm text-white placeholder-white/40 focus:outline-none focus:border-orange-500/50 focus:ring-1 focus:ring-orange-500/50 transition-all" />
+                <svg class="absolute left-4 top-3.5 w-4 h-4 text-white/40" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><rect x="1" y="4" width="22" height="16" rx="2" ry="2"/><line x1="1" y1="10" x2="23" y2="10"/></svg>
+              </div>
+            </div>
+
+            <!-- Expiry & CVV -->
+            <div class="grid grid-cols-2 gap-4">
+              <div>
+                <label class="block text-xs font-semibold text-white/60 uppercase tracking-wider mb-1.5">
+                  Expiry
+                </label>
+                <input type="text" id="card-expiry" required placeholder="MM/YY" class="w-full bg-white/5 border border-white/10 rounded-xl px-4 py-3 text-sm text-white placeholder-white/40 focus:outline-none focus:border-orange-500/50 focus:ring-1 focus:ring-orange-500/50 transition-all text-center" />
+              </div>
+              <div>
+                <label class="block text-xs font-semibold text-white/60 uppercase tracking-wider mb-1.5">
+                  CVV
+                </label>
+                <input type="password" id="card-cvv" required placeholder="•••" class="w-full bg-white/5 border border-white/10 rounded-xl px-4 py-3 text-sm text-white placeholder-white/40 focus:outline-none focus:border-orange-500/50 focus:ring-1 focus:ring-orange-500/50 transition-all text-center" />
+              </div>
+            </div>
+
+            <!-- Submit Button -->
+            <button type="submit" id="submit-btn" class="w-full bg-orange-500 text-white py-3.5 px-6 rounded-xl font-bold text-sm uppercase tracking-widest transition-all duration-300 cursor-pointer hover:bg-orange-400 hover:shadow-[0_0_20px_rgba(255,110,0,0.4)] flex items-center justify-center gap-2 mt-6">
+              <span id="submit-btn-icon" class="flex items-center"></span>
+              <span id="submit-btn-text">Complete Payment</span>
+            </button>
+          </form>
+        </div>
+
+        <!-- Success Screen -->
+        <div id="modal-success-step" class="hidden text-center py-6 flex flex-col items-center">
+          <div class="w-20 h-20 bg-orange-500/20 text-orange-400 rounded-full flex items-center justify-center mb-6 shadow-[0_0_30px_rgba(255,110,0,0.3)]">
+            <svg class="w-10 h-10" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>
+          </div>
+          
+          <h4 class="text-3xl font-bold text-white mb-4 tracking-tight">
+            Welcome to the Future.
+          </h4>
+          
+          <p class="text-white/70 text-sm max-w-sm mb-8 leading-relaxed">
+            Your hardware allocation for the <span class="text-orange-400 font-semibold" id="success-plan-name">Standard</span> Plan is complete. Order hash verified successfully.
+          </p>
+
+          <button onclick="closeCheckout()" class="w-full border border-orange-500/30 hover:bg-orange-500/10 text-orange-400 py-3.5 px-6 rounded-xl font-bold text-sm uppercase tracking-widest transition-all">
+            Return to Home Page
+          </button>
+        </div>
+      </div>
+    </div>      </div>
+    </div>
+  </div>
+
+  <!-- Pricing Interactivity Script -->
+  <script>
+    function openCheckout(planName, price) {
+      const modal = document.getElementById('checkout-modal');
+      const modalBody = modal.querySelector('.relative');
+      
+      document.getElementById('modal-plan-name').innerText = planName;
+      document.getElementById('modal-plan-price').innerText = price;
+      
+      modal.classList.remove('hidden');
+      setTimeout(() => {
+        modal.classList.remove('opacity-0');
+        modalBody.classList.remove('scale-95');
+      }, 10);
+    }
+
+    function closeCheckout() {
+      const modal = document.getElementById('checkout-modal');
+      const modalBody = modal.querySelector('.relative');
+      
+      modal.classList.add('opacity-0');
+      modalBody.classList.add('scale-95');
+      
+      setTimeout(() => {
+        modal.classList.add('hidden');
+        document.getElementById('modal-form-step').classList.remove('hidden');
+        document.getElementById('modal-success-step').classList.add('hidden');
+        document.getElementById('payment-form').reset();
+        
+        const submitBtn = document.getElementById('submit-btn');
+        submitBtn.disabled = false;
+        document.getElementById('submit-btn-text').innerText = 'Complete Payment';
+        document.getElementById('submit-btn-icon').innerHTML = '';
+      }, 300);
+    }
+
+    const cardNumberInput = document.getElementById('card-number');
+    if (cardNumberInput) {
+      cardNumberInput.addEventListener('input', function(e) {
+        let val = e.target.value.replace(/\s+/g, '').replace(/[^0-9]/gi, '');
+        let formattedVal = '';
+        for (let i = 0; i < val.length && i < 16; i++) {
+          if (i > 0 && i % 4 === 0) {
+            formattedVal += ' ';
+          }
+          formattedVal += val[i];
+        }
+        e.target.value = formattedVal;
+      });
+    }
+
+    const cardExpiryInput = document.getElementById('card-expiry');
+    if (cardExpiryInput) {
+      cardExpiryInput.addEventListener('input', function(e) {
+        let val = e.target.value.replace(/\D/g, '');
+        let formattedVal = '';
+        if (val.length > 2) {
+          formattedVal = val.substring(0, 2) + '/' + val.substring(2, 4);
+        } else {
+          formattedVal = val;
+        }
+        e.target.value = formattedVal;
+      });
+    }
+
+    const cardCvvInput = document.getElementById('card-cvv');
+    if (cardCvvInput) {
+      cardCvvInput.addEventListener('input', function(e) {
+        e.target.value = e.target.value.replace(/\D/g, '');
+      });
+    }
+
+    function handleCheckoutSubmit(e) {
+      e.preventDefault();
+      
+      const submitBtn = document.getElementById('submit-btn');
+      const submitBtnText = document.getElementById('submit-btn-text');
+      const submitBtnIcon = document.getElementById('submit-btn-icon');
+      
+      submitBtn.disabled = true;
+      submitBtnText.innerText = 'Authorizing Secure Spatial Node...';
+      submitBtnIcon.innerHTML = `
+        <svg class="animate-spin mr-3 h-5 w-5 text-white" fill="none" viewBox="0 0 24 24">
+          <circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4"></circle>
+          <path class="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path>
+        </svg>
+      `;
+      
+      const planName = document.getElementById('modal-plan-name').innerText;
+      
+      setTimeout(() => {
+        document.getElementById('success-plan-name').innerText = planName;
+        
+        document.getElementById('modal-form-step').classList.add('hidden');
+        document.getElementById('modal-success-step').classList.remove('hidden');
+      }, 1500);
+    }
+  </script>
+
+  <!-- Script for scroll animation  <!-- Core Animation Script -->
+  <script src="script.js"></script>
+
+  <!-- Inline Observer to guarantee scroll animations trigger even if script.js is cached -->
+  <script>
+    (function() {
+      const initObserver = () => {
+        const observer = new IntersectionObserver((entries) => {
+          entries.forEach(entry => {
+            if (entry.isIntersecting) {
+              entry.target.style.animationPlayState = 'running';
+              observer.unobserve(entry.target);
+            }
+          });
+        }, { threshold: 0.15 });
+
+        document.querySelectorAll('.animate-on-scroll').forEach((el) => {
+          observer.observe(el);
+        });
+      };
+      
+      if (document.readyState === 'loading') {
+        document.addEventListener('DOMContentLoaded', initObserver);
+      } else {
+        initObserver();
+      }
+    })();
+  </script>
+
+  <!-- Hero Carousel Script -->
+  <script>
+    document.addEventListener('DOMContentLoaded', () => {
+      const slides = [
+        {
+          module: "SYSTEM MODULE // 01",
+          title: "Design to Explore",
+          desc: "Creating immersive, beautiful, and tactile design systems from scratch for spatial computing."
+        },
+        {
+          module: "SYSTEM MODULE // 02",
+          title: "Spatial Audio Depth",
+          desc: "Implementing real-time acoustic rendering that shifts dynamically with your head tracking."
+        },
+        {
+          module: "SYSTEM MODULE // 03",
+          title: "Haptic Synergy",
+          desc: "Synchronizing physical feedback loops with visual cues for unmatched realism."
+        },
+        {
+          module: "SYSTEM MODULE // 04",
+          title: "Infinite Canvas",
+          desc: "Breaking the boundaries of traditional screens to build expansive, 360-degree workspaces."
+        }
+      ];
+      
+      let currentSlide = 0;
+      
+      const moduleEl = document.getElementById('hero-slider-module');
+      const titleEl = document.getElementById('hero-slider-title');
+      const descEl = document.getElementById('hero-slider-desc');
+      const dotsContainer = document.getElementById('hero-slider-dots');
+      const prevBtn = document.getElementById('hero-slider-prev');
+      const nextBtn = document.getElementById('hero-slider-next');
+      
+      function renderSlide() {
+        const slide = slides[currentSlide];
+        
+        // simple fade effect
+        titleEl.style.opacity = '0';
+        descEl.style.opacity = '0';
+        moduleEl.style.opacity = '0';
+        
+        setTimeout(() => {
+          moduleEl.innerText = slide.module;
+          titleEl.innerText = slide.title;
+          descEl.innerText = slide.desc;
+          
+          titleEl.style.opacity = '1';
+          descEl.style.opacity = '1';
+          moduleEl.style.opacity = '1';
+        }, 200);
+
+        // Update dots
+        Array.from(dotsContainer.children).forEach((dot, index) => {
+          if (index === currentSlide) {
+            dot.className = "h-[2px] transition-all duration-300 bg-white w-5 cursor-pointer";
+          } else {
+            dot.className = "h-[2px] transition-all duration-300 bg-white/20 w-3 cursor-pointer";
+          }
+        });
+      }
+      
+      prevBtn.addEventListener('click', () => {
+        currentSlide = (currentSlide - 1 + slides.length) % slides.length;
+        renderSlide();
+      });
+      
+      nextBtn.addEventListener('click', () => {
+        currentSlide = (currentSlide + 1) % slides.length;
+        renderSlide();
+      });
+      
+      Array.from(dotsContainer.children).forEach((dot, index) => {
+        dot.addEventListener('click', () => {
+          currentSlide = index;
+          renderSlide();
+        });
+      });
+    });
+  </script>
+
+  <!-- Chatbot Script and HTML -->
+  <!-- Floating Chat Modal -->
+  <div id="chat-modal" class="fixed bottom-6 right-6 z-[100] w-[350px] max-w-[calc(100vw-3rem)] flex flex-col rounded-2xl overflow-hidden opacity-0 pointer-events-none transition-all duration-300 translate-y-4" style="background: rgba(255, 255, 255, 0.05); backdrop-filter: blur(10px); border: 1px solid rgba(255, 255, 255, 0.1); box-shadow: 0 10px 40px rgba(0,0,0,0.5);">
+    
+    <!-- Chat Header -->
+    <div class="px-5 py-4 border-b border-white/10 flex justify-between items-center bg-white/[0.02]">
+      <div class="flex items-center space-x-2">
+        <span class="w-2 h-2 rounded-full bg-green-400 animate-pulse"></span>
+        <span class="text-white text-sm font-semibold tracking-wide font-sans">VR AI Assistant</span>
+      </div>
+      <button id="chat-close-btn" class="text-white/50 hover:text-white transition-colors">
+        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 6 6 18"/><path d="m6 6 12 12"/></svg>
+      </button>
+    </div>
+    
+    <!-- Chat Body -->
+    <div id="chat-body" class="p-5 h-[300px] overflow-y-auto flex flex-col space-y-4 font-sans">
+      <!-- Messages will go here -->
+    </div>
+    
+    <!-- Chat Input -->
+    <div class="p-4 border-t border-white/10 bg-white/[0.02] flex items-center space-x-2 font-sans">
+      <input type="text" id="chat-input" placeholder="Type a message..." class="flex-1 bg-white/5 border border-white/10 rounded-lg px-3 py-2 text-sm text-white placeholder-white/40 focus:outline-none focus:border-white/30 transition-colors">
+      <button id="chat-send-btn" class="bg-white text-black px-4 py-2 rounded-lg text-xs font-bold uppercase tracking-wider hover:bg-white/80 transition-colors">
+        Send
+      </button>
+    </div>
+  </div>
+
+  <script>
+    document.addEventListener('DOMContentLoaded', () => {
+      const chatModal = document.getElementById('chat-modal');
+      const chatToggleBtn = document.getElementById('chat-toggle-btn');
+      const chatCloseBtn = document.getElementById('chat-close-btn');
+      const chatBody = document.getElementById('chat-body');
+      const chatInput = document.getElementById('chat-input');
+      const chatSendBtn = document.getElementById('chat-send-btn');
+      
+      let chatOpenedBefore = false;
+
+      function appendMessage(text, isUser = false) {
+        const msgDiv = document.createElement('div');
+        msgDiv.className = `max-w-[85%] rounded-xl px-4 py-2 text-sm leading-relaxed ${isUser ? 'bg-white text-black self-end rounded-br-sm' : 'bg-white/10 text-white self-start rounded-bl-sm'}`;
+        msgDiv.innerText = text;
+        chatBody.appendChild(msgDiv);
+        chatBody.scrollTop = chatBody.scrollHeight;
+      }
+
+      chatToggleBtn.addEventListener('click', () => {
+        chatModal.classList.remove('opacity-0', 'pointer-events-none', 'translate-y-4');
+        chatModal.classList.add('opacity-100', 'pointer-events-auto', 'translate-y-0');
+        
+        if (!chatOpenedBefore) {
+          chatOpenedBefore = true;
+          setTimeout(() => {
+            appendMessage("Hello! Welcome to Nexa VR Agency. How can I help you explore the future today?");
+          }, 500);
+        }
+      });
+
+      chatCloseBtn.addEventListener('click', () => {
+        chatModal.classList.remove('opacity-100', 'pointer-events-auto', 'translate-y-0');
+        chatModal.classList.add('opacity-0', 'pointer-events-none', 'translate-y-4');
+      });
+
+      function handleSend() {
+        const text = chatInput.value.trim();
+        if (!text) return;
+        
+        appendMessage(text, true);
+        chatInput.value = '';
+        
+        // Simulate AI response
+        setTimeout(() => {
+          appendMessage("Got it! A spatial design expert will connect with you shortly, or you can check our Product section above.");
+        }, 1000);
+      }
+
+      chatSendBtn.addEventListener('click', handleSend);
+      chatInput.addEventListener('keypress', (e) => {
+        if (e.key === 'Enter') handleSend();
+      });
+    });
+
+    // Navigation Active Dot Logic
+    document.addEventListener('DOMContentLoaded', () => {
+      const navLinks = document.querySelectorAll('.nav-link');
+      const activeDot = document.getElementById('nav-active-dot');
+
+      navLinks.forEach(link => {
+        link.addEventListener('click', function() {
+          navLinks.forEach(l => {
+            l.classList.remove('text-white');
+            l.classList.add('text-white/70');
+          });
+          this.classList.remove('text-white/70');
+          this.classList.add('text-white');
+          this.appendChild(activeDot);
+        });
+      });
+    });
+  </script>
+</body>
+</html>
